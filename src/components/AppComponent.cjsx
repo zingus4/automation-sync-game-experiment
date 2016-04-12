@@ -1,23 +1,32 @@
-# AuthStore = require '../stores/AuthStore'
-BaseComponent = require './BaseComponent'
-# # PusherActionCreator = require '../actions/PusherActionCreator'
-# config = require '../config'
-# ReactRouter = require 'react-router'
-# InterfaceActionCreator = require '../actions/InterfaceActionCreator'
-# ChannelsActionCreator = require '../actions/ChannelsActionCreator'
+ConfigurationStore  = require '../stores/ConfigurationStore'
+BaseComponent       = require './BaseComponent'
+FormComponent       = require './FormComponent'
+LoadingComponent    = require './LoadingComponent/LoadingComponent'
 
-# require '!style!css!../vendor/stylesheets/react-select'
-# require '!style!css!../vendor/stylesheets/react-datepicker'
-# require '!style!css!stylus!../vendor/stylesheets/normalize'
-# require '!style!css!../vendor/stylesheets/font-awesome/font-awesome'
-# require '!style!css!autoprefixer!stylus!../assets/stylesheets/base'
+require '!style!css!../vendor/stylesheets/bootstrap/bootstrap'
+require '!style!css!../vendor/stylesheets/react-select'
+require '!style!css!../vendor/stylesheets/vis/vis'
+require '!style!css!stylus!./base'
 
-# require '!style!css!../lib/pickmeup/base'
-# require '!style!css!stylus!../lib/pickmeup/override'
+require 'script!../vendor/js/vis/vis.js'
 
 class AppComponent extends BaseComponent
   
+  dependsOnStores: [ConfigurationStore]
+
+  getState: ->
+    step: ConfigurationStore.step
+    message: ConfigurationStore.message
+
   render: ->
-    <div>{@props.main}</div>
+    <div className='container'>
+      {
+        switch @state.step
+          when 'form'
+            <FormComponent />
+          when 'loading'
+            <LoadingComponent message=@state.message />
+      }
+    </div>
 
 module.exports = AppComponent
