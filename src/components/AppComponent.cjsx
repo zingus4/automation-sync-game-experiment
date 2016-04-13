@@ -30,7 +30,7 @@ class AppComponent extends BaseComponent
           when 'loading'
             <LoadingComponent message=@state.message />
           when 'index'
-            <IndexComponent list=@state.list automatonSize=@state.automatonSize abcSize=@state.abcSize />
+            <IndexComponent />
       }
     </div>
 

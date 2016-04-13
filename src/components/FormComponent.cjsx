@@ -30,6 +30,9 @@ class FormComponent extends BaseComponent
   handleSelect: (key, e) =>
     @setState "#{key}": e?.value
 
+  # componentDidMount: ->
+  #   ConfigurationActionCreator.request 2, 2  
+
   render: ->
     <form onSubmit=@handleForm>
       <div className='row'>
