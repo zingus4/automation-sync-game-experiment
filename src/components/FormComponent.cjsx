@@ -2,13 +2,25 @@ ConfigurationActionCreator = require '../actions/ConfigurationActionCreator'
 Select                     = require 'react-select'
 BaseComponent              = require './BaseComponent'
 
+max = 1e7
 class FormComponent extends BaseComponent
 
   constructor: (props) ->
     super props
-    @automatonSizeOptions = _([2..10]).map (i) -> {value: i, label: i}
-    @abcSizeOptions = _([2..10]).map (i) ->
-      {value: i, label: "a-#{String.fromCharCode('a'.charCodeAt(0) + i - 1)} (#{i})"}
+
+  automatonSizeOptions: =>
+    _([2..10])
+      .filter (i) =>
+        Math.pow(i, i * (@state.abcSize || 2)) < max
+      .map (i) -> 
+        {value: i, label: i}
+
+  abcSizeOptions: =>
+    _([2..10])
+      .filter (i) =>
+        Math.pow((@state.automatonSize || 2), i * (@state.automatonSize || 2)) < max
+      .map (i) ->
+        {value: i, label: "a-#{String.fromCharCode('a'.charCodeAt(0) + i - 1)} (#{i})"}
 
   handleForm: (e) =>
     e.preventDefault()
@@ -23,13 +35,13 @@ class FormComponent extends BaseComponent
       <div className='row'>
         <div className='col-md-6'>
           <Select value=@state.automatonSize 
-                  options=@automatonSizeOptions
+                  options=@automatonSizeOptions()
                   placeholder='Automaton size'
                   onChange={_(@handleSelect).partial('automatonSize', _)} />
         </div>
         <div className='col-md-6'>
           <Select value=@state.abcSize 
-                  options=@abcSizeOptions
+                  options=@abcSizeOptions()
                   placeholder='ABC size'
                   onChange={_(@handleSelect).partial('abcSize', _)} />
         </div>

@@ -1,5 +1,5 @@
-Dispatcher = require '../dispatcher/Dispatcher'
-ActionTypes = require '../constants/action_types'
+Dispatcher    = require '../dispatcher/Dispatcher'
+ActionTypes   = require '../constants/action_types'
 
 ConfigurationActionCreator =
   
@@ -9,5 +9,10 @@ ConfigurationActionCreator =
       params:
         automatonSize: automatonSize
         abcSize: abcSize
+    $.getJSON "/data/#{automatonSize}-#{abcSize}.json", (data) ->
+      Dispatcher.dispatch
+        type: ActionTypes.AUTOMATONS_INDEX
+        params:
+          data: data
 
 module.exports = ConfigurationActionCreator
