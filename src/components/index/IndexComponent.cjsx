@@ -18,10 +18,10 @@ class IndexComponent extends BaseComponent
         label: 'win'
         order: 'none'
       length: 
-        label: 'length'
+        label: 'the shortest way to win'
         order: 'none'
       first_step: 
-        label: 'first step'
+        label: 'first step to win'
         order: 'none'
 
   getState: ->
@@ -59,6 +59,7 @@ class IndexComponent extends BaseComponent
     <div>
       <h4>{"Automaton size: #{@state.automatonSize}"}</h4>
       <h4>{"Alphabet size: #{@state.abcSize}"}</h4>
+      <span>{'Loops are not shown to make the automaton graphs clearer'}</span>
       <IndexTableComponent sortState=@state.sortState list=@state.list handleSortClick=@handleSortClick automatonSize=@state.automatonSize abcSize=@state.abcSize />
       <PaginationComponent pageNum={@state.meta.total_pages} handlePageClick={@handlePageClick} forceSelected={@state.meta.current_page - 1} />
     </div>
