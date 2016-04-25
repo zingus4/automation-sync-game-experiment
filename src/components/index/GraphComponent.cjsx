@@ -16,10 +16,18 @@ class GraphComponent extends BaseComponent
     nodes = _([1..@props.automatonSize]).map (i) -> {id: i, label: i}
     edges = []
     _([0..@props.automatonSize - 1]).each (i) =>
+      a = _([0..@props.automatonSize - 1]).map -> ''
       _([0..@props.abcSize - 1]).each (j) =>
-        if i != @a[i][j]
-          edge = from: i + 1, to: @a[i][j] + 1, arrows: 'to',  label: String.fromCharCode('a'.charCodeAt(0) + j)
+        a[@a[i][j]] += String.fromCharCode('a'.charCodeAt(0) + j)
+      _(a).each (str, j) =>
+        if (str.length > 0) && (i != j || @props.loopsEnabled)
+          edge = from: i + 1, to: j + 1, arrows: 'to', label: str
           edges.push edge
+
+      # _([0..@props.abcSize - 1]).each (j) =>
+      #   if i != @a[i][j]
+      #     edge = from: i + 1, to: @a[i][j] + 1, arrows: 'to',  label: String.fromCharCode('a'.charCodeAt(0) + j)
+      #     edges.push edge
 
     container = ReactDom.findDOMNode @refs.graph
     data =

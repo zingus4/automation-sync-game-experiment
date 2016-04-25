@@ -2,6 +2,7 @@ BaseComponent               = require '../BaseComponent'
 styles                      = require './styles'
 
 class TableHeadSortComponent extends BaseComponent
+  
   availableOrders: ['desc', 'none', 'asc']
   
   nextOrder: =>
