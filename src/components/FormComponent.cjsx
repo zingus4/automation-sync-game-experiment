@@ -9,16 +9,16 @@ class FormComponent extends BaseComponent
     super props
 
   automatonSizeOptions: =>
-    _([2..10])
+    _([2..6])
       .filter (i) =>
-        Math.pow(i, i * (@state.abcSize || 2)) < max
+        yes
       .map (i) -> 
         {value: i, label: i}
 
   abcSizeOptions: =>
-    _([2..10])
+    _([2..3])
       .filter (i) =>
-        Math.pow((@state.automatonSize || 2), i * (@state.automatonSize || 2)) < max
+        yes
       .map (i) ->
         {value: i, label: "a-#{String.fromCharCode('a'.charCodeAt(0) + i - 1)} (#{i})"}
 
