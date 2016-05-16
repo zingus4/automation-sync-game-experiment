@@ -29,14 +29,14 @@ class IndexTableComponent extends BaseComponent
       <tbody>
         {
           for item, index in @props.list
-            <tr key={index}>
+            <tr key={item.index}>
               <td>
-                <GraphComponent index=item.index automatonSize=@props.automatonSize abcSize=@props.abcSize loopsEnabled=@state.loopsEnabled />
+                <GraphComponent index=item.example automatonSize=@props.automatonSize abcSize=@props.abcSize loopsEnabled=@state.loopsEnabled />
               </td>
-              <td>{item.index}</td>
-              <td>{if item.win then 'yes' else 'no'}</td>
+              <td>{item.example}</td>
+              <td>{item.count}</td>
               <td>{item.length}</td>
-              <td>{String.fromCharCode('a'.charCodeAt(0) + item.first_step)}</td>
+              <td>{item.optimal}</td>
             </tr>
         }
       </tbody>

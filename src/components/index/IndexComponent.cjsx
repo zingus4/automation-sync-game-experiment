@@ -14,14 +14,14 @@ class IndexComponent extends BaseComponent
       title: 
         label: 'index'
         order: 'asc'
-      win: 
-        label: 'win'
+      count: 
+        label: 'how many such have been found'
         order: 'none'
       length: 
-        label: 'the shortest way to win'
+        label: 'length'
         order: 'none'
-      first_step: 
-        label: 'first step to win'
+      optimal: 
+        label: 'optimal game'
         order: 'none'
 
   getState: ->
