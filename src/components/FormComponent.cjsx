@@ -9,18 +9,14 @@ class FormComponent extends BaseComponent
     super props
 
   automatonSizeOptions: =>
-    _([2..6])
-      .filter (i) =>
-        yes
-      .map (i) -> 
-        {value: i, label: i}
+    _([2..7]).map (i) -> 
+      {value: i, label: i}
 
   abcSizeOptions: =>
-    _([2..3])
-      .filter (i) =>
-        yes
-      .map (i) ->
-        {value: i, label: "a-#{String.fromCharCode('a'.charCodeAt(0) + i - 1)} (#{i})"}
+    a = [0, 0, 6, 6, 4, 4, 3, 2]
+    
+    _([2..a[@state.automatonSize]]).map (i) ->
+      {value: i, label: "a-#{String.fromCharCode('a'.charCodeAt(0) + i - 1)} (#{i})"}
 
   handleForm: (e) =>
     e.preventDefault()
