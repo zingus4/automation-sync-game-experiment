@@ -36,7 +36,7 @@ class IndexTableComponent extends BaseComponent
           for item, index in @props.list
             <tr key={item.index}>
               <td>
-                <GraphComponent index=2164343593 automatonSize=@props.automatonSize abcSize=@props.abcSize loopsEnabled=@state.loopsEnabled />
+                <GraphComponent index=item.example automatonSize=@props.automatonSize abcSize=@props.abcSize loopsEnabled=@state.loopsEnabled />
               </td>
               <td>{item.example}</td>
               <td>{item.count}</td>
