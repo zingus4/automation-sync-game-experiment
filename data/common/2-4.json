@@ -1,0 +1,6 @@
+[
+{"count": 40, "example": 255, "length": 1, "optimal": "a"},
+{"count": 20, "example": 239, "length": 1, "optimal": "b"},
+{"count": 10, "example": 207, "length": 1, "optimal": "c"},
+{"count": 5, "example": 143, "length": 1, "optimal": "d"}
+]

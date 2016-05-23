@@ -6,4 +6,3 @@ npm-debug.log
 src/config.coffee
 dev-constants.js
 .DS_Store
-data

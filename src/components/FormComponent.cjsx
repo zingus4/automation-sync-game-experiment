@@ -2,7 +2,6 @@ ConfigurationActionCreator = require '../actions/ConfigurationActionCreator'
 Select                     = require 'react-select'
 BaseComponent              = require './BaseComponent'
 
-max = 1e7
 class FormComponent extends BaseComponent
 
   constructor: (props) ->
@@ -13,7 +12,7 @@ class FormComponent extends BaseComponent
       {value: i, label: i}
 
   abcSizeOptions: =>
-    a = [0, 0, 6, 6, 4, 4, 3, 2]
+    a = [0, 0, 4, 4, 4, 4, 3, 2]
     
     _([2..a[@state.automatonSize]]).map (i) ->
       {value: i, label: "a-#{String.fromCharCode('a'.charCodeAt(0) + i - 1)} (#{i})"}
@@ -21,10 +20,13 @@ class FormComponent extends BaseComponent
   handleForm: (e) =>
     e.preventDefault()
     if @state.automatonSize && @state.abcSize
-      ConfigurationActionCreator.request @state.automatonSize, @state.abcSize
+      ConfigurationActionCreator.request @state.automatonSize, @state.abcSize, @state.bottom
 
   handleSelect: (key, e) =>
     @setState "#{key}": e?.value
+
+  handleBottoms: =>
+    @setState bottom: !@state.bottom
 
   # componentDidMount: ->
   #   ConfigurationActionCreator.request 2, 2  
@@ -43,6 +45,15 @@ class FormComponent extends BaseComponent
                   options=@abcSizeOptions()
                   placeholder='ABC size'
                   onChange={_(@handleSelect).partial('abcSize', _)} />
+        </div>
+        <div className='col-md-2'>
+            <input  type='checkbox'
+                    value=@state.bottom
+                    id='bottom'
+                    onChange=@handleBottoms
+            />
+            {' '}
+            <label htmlFor='bottom'>{'With bottom'}</label>
         </div>
       </div>
       <br/>
