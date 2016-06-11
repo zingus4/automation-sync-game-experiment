@@ -17,7 +17,7 @@ ConfigurationActionCreator =
       params:
         automatonSize: automatonSize
         abcSize: abcSize
-    $.getJSON "/data/#{prefix}/#{automatonSize}-#{abcSize}.json", (data) ->
+    $.getJSON "/data/data-#{automatonSize}.json", (data) ->
       Dispatcher.dispatch
         type: ActionTypes.AUTOMATONS_INDEX
         params:

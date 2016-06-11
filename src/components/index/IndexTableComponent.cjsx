@@ -34,14 +34,12 @@ class IndexTableComponent extends BaseComponent
       <tbody>
         {
           for item, index in @props.list
-            <tr key={item.index}>
+            <tr key={index}>
               <td>
-                <GraphComponent index=item.example automatonSize=@props.automatonSize abcSize=@props.abcSize loopsEnabled=@state.loopsEnabled />
+                <GraphComponent a=item.a automatonSize=@props.automatonSize abcSize=@props.abcSize loopsEnabled=@state.loopsEnabled />
               </td>
-              <td>{item.example}</td>
-              <td>{item.count}</td>
               <td>{item.length}</td>
-              <td>{item.optimal}</td>
+              <td>{item.answer}</td>
             </tr>
         }
       </tbody>

@@ -11,17 +11,11 @@ class IndexComponent extends BaseComponent
     super props
     @state.requestParams = {}
     @state.sortState = 
-      title: 
-        label: 'index'
-        order: 'asc'
       count: 
-        label: 'how many such have been found'
-        order: 'none'
-      length: 
         label: 'length'
-        order: 'none'
-      optimal: 
-        label: 'optimal game'
+        order: 'asc'
+      length: 
+        label: 'answer'
         order: 'none'
 
   getState: ->
@@ -58,8 +52,8 @@ class IndexComponent extends BaseComponent
   render: ->
     <div>
       <h4>{"Automaton size: #{@state.automatonSize}"}</h4>
-      <h4>{"Alphabet size: #{@state.abcSize}"}</h4>
-      <IndexTableComponent sortState=@state.sortState list=@state.list handleSortClick=@handleSortClick automatonSize=@state.automatonSize abcSize=@state.abcSize />
+      <h4>{"Alphabet size: #{2}"}</h4>
+      <IndexTableComponent sortState=@state.sortState list=@state.list handleSortClick=@handleSortClick automatonSize=@state.automatonSize abcSize=2 />
       <PaginationComponent pageNum={@state.meta.total_pages} handlePageClick={@handlePageClick} forceSelected={@state.meta.current_page - 1} />
     </div>
 
