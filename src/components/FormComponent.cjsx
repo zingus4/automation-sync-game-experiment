@@ -8,7 +8,7 @@ class FormComponent extends BaseComponent
     super props
 
   automatonSizeOptions: =>
-    _([3..3]).map (i) -> 
+    _([3..8]).map (i) -> 
       {value: i, label: i}
 
   # abcSizeOptions: =>
